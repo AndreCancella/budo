@@ -1,0 +1,1 @@
+<?php /**PATH D:\projeto\budo-new\resources\views/home.blade.php ENDPATH**/ ?>
