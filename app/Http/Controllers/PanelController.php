@@ -16,11 +16,17 @@ class PanelController extends Controller
 
         $dojo = Dojo::select('id')->where('user_id', $user->id)->get();
 
-        $students = Students::where('dojo_id', $dojo[0]->id)->get();
-        $belts = Belt::where('dojo_id' , $dojo[0]->id)->get();
-        foreach ($belts as $belt) {
-            $colors[] = $belt->color;
-        }
-        return view('panel', ['students' => $students, 'belts' => $colors]);
+        if(!empty($dojo[0])){
+            $students = Students::where('dojo_id', $dojo[0]->id)->get();
+            $belts = Belt::where('dojo_id' , $dojo[0]->id)->get();
+            if(!empty($belts[0])){
+                foreach ($belts as $belt) {
+                    $colors[] = $belt->color;
+                }
+                return view('panel', ['students' => $students, 'belts' => $colors]);
+            }
+            return view('panel', ['students' => $students, 'belts' => []]);
+        } 
+        return view('panel', ['students' => [], 'belts' => []]);
     }
 }

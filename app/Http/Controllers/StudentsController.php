@@ -26,4 +26,8 @@ class StudentsController extends Controller
         Students::destroy($id);
         return redirect()->route('panel')->with('deleted', 'Created');
     }
+
+    public function edit($student, $id){
+        
+    }
 }
